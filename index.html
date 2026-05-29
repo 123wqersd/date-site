@@ -6,7 +6,6 @@
 <title>Приглашение 💖</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -18,7 +17,6 @@ body {
     overflow: hidden;
     text-align: center;
 }
-
 .container {
     background: white;
     padding: 30px;
@@ -30,18 +28,15 @@ body {
     z-index: 2;
     animation: fadeIn 0.6s ease;
 }
-
 @keyframes fadeIn {
     from {opacity:0; transform: scale(0.9);}
     to {opacity:1; transform: scale(1);}
 }
-
 h1 {
     font-size: 20px;
     margin-bottom: 20px;
     color: #444;
 }
-
 button {
     padding: 12px 20px;
     border-radius: 20px;
@@ -51,22 +46,17 @@ button {
     margin: 8px;
     transition: 0.3s;
 }
-
 .yes {
     background: #ff8fab;
     color: white;
 }
-
 .no {
     background: #eee;
 }
-
 button:hover {
     transform: scale(1.05);
 }
-
 .hidden { display: none; }
-
 input, select {
     padding: 10px;
     margin: 8px 0;
@@ -74,13 +64,11 @@ input, select {
     border-radius: 12px;
     border: 1px solid #eee;
 }
-
 img {
     width: 120px;
     border-radius: 20px;
     margin-bottom: 15px;
 }
-
 .heart {
     position: fixed;
     top: -10px;
@@ -88,14 +76,12 @@ img {
     animation: fall linear forwards;
     z-index: 1;
 }
-
 @keyframes fall {
     to {
         transform: translateY(100vh);
         opacity: 0;
     }
 }
-
 </style>
 </head>
 <body>
@@ -154,6 +140,15 @@ function finish() {
     let date = document.getElementById("date").value;
     let time = document.getElementById("time").value;
     let idea = document.getElementById("idea").value;
+
+    let message = `💖 НОВЫЙ ОТВЕТ 💖
+Дата: ${date}
+Время: ${time}
+Выбор: ${idea}`;
+
+    let url = "https://t.me/date_notify_123_bot?text=" + encodeURIComponent(message);
+
+    window.open(url, "_blank");
 
     step4.classList.add("hidden");
     step5.classList.remove("hidden");
