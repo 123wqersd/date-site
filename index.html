@@ -100,8 +100,8 @@ img {
 
 <div class="container hidden" id="step3">
     <h1>Когда ты свободна? 🗓</h1>
-    <input type="date" id="date">
-    <input type="time" id="time">
+    <input type="date" id="date" required>
+    <input type="time" id="time" required>
     <button class="yes" onclick="showIdeas()">Дальше 💘</button>
 </div>
 
@@ -141,20 +141,19 @@ function finish() {
     let time = document.getElementById("time").value;
     let idea = document.getElementById("idea").value;
 
-    let message = `💖 НОВЫЙ ОТВЕТ 💖
-Дата: ${date}
-Время: ${time}
-Выбор: ${idea}`;
-
-    let url = "https://t.me/date_notify_123_bot?text=" + encodeURIComponent(message);
-
-    window.open(url, "_blank");
+    fetch("/api/send", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ date, time, idea })
+    });
 
     step4.classList.add("hidden");
     step5.classList.remove("hidden");
 
     result.innerHTML = `
-    Готовься 💖<br><br>
+    Всё записано 💖<br><br>
     ${date} в ${time}<br>
     ${idea} 😌
     `;
