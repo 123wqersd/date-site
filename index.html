@@ -100,88 +100,9 @@ img {
 
 <div class="container hidden" id="step3">
     <h1>Когда ты свободна? 🗓</h1>
-    <input type="date" id="date" required>
-    <input type="time" id="time" required>
+    <input type="date" id="date">
+    <input type="time" id="time">
     <button class="yes" onclick="showIdeas()">Дальше 💘</button>
 </div>
 
 <div class="container hidden" id="step4">
-    <h1>Что выберем? 🌿</h1>
-    <select id="idea">
-        <option>🌳 Прогулка в парке</option>
-        <option>🏙 Прогулка в центре</option>
-        <option>😅 Я нищий школьник и могу позволить себе только это</option>
-    </select>
-    <button class="yes" onclick="finish()">Подтвердить 💖</button>
-</div>
-
-<div class="container hidden" id="step5">
-    <h1 id="result"></h1>
-</div>
-
-<script>
-
-function nextStep() {
-    step1.classList.add("hidden");
-    step2.classList.remove("hidden");
-}
-
-function showDate() {
-    step2.classList.add("hidden");
-    step3.classList.remove("hidden");
-}
-
-function showIdeas() {
-    step3.classList.add("hidden");
-    step4.classList.remove("hidden");
-}
-
-function finish() {
-    let date = document.getElementById("date").value;
-    let time = document.getElementById("time").value;
-    let idea = document.getElementById("idea").value;
-
-    fetch("/api/send", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ date, time, idea })
-    });
-
-    step4.classList.add("hidden");
-    step5.classList.remove("hidden");
-
-    result.innerHTML = `
-    Всё записано 💖<br><br>
-    ${date} в ${time}<br>
-    ${idea} 😌
-    `;
-}
-
-function moveNo(btn) {
-    btn.style.position = "absolute";
-    btn.style.top = Math.random() * window.innerHeight + "px";
-    btn.style.left = Math.random() * window.innerWidth + "px";
-}
-
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (3 + Math.random() * 5) + "s";
-    heart.style.fontSize = (12 + Math.random() * 20) + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 7000);
-}
-
-setInterval(createHeart, 300);
-
-</script>
-
-</body>
-</html>
